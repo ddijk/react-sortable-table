@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TableExampleSortable from './TableExampleSortable';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TableExampleSortable />
   </React.StrictMode>,
   document.getElementById('root')
 );
