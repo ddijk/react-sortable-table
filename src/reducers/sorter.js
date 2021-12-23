@@ -7,10 +7,12 @@ export const sorter = (state = { 'tableData': [] }, action) => {
             return state
 
         case 'RECEIVE_GET_DATA':
-            console.info('RECEIVE_GET_DATA', action);
+            console.info('RECEIVE_GET_DATA', action.value);
             return {
                 ...state,
-                'tableData': action.value
+                'tableData': [...action.value.content],
+                'chunk_size': action.value.chunk_size,
+                'chunk_index': action.value.chunk_index
             }
 
         case 'ERROR_GET_DATA':
@@ -32,6 +34,8 @@ export const sorter = (state = { 'tableData': [] }, action) => {
                 column: action.column,
                 tableData: _.sortBy(state.tableData, [action.column]),
                 direction: 'ascending',
+                chunk_index: state.chunk_index,
+                chunk_size: state.chunk_size
             }
         default:
             return state;

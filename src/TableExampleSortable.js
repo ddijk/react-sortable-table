@@ -1,9 +1,8 @@
 
 import React from 'react'
 import { Table } from 'semantic-ui-react'
-import mysorter from './utils'
 import { connect } from "react-redux";
-import { getPersons } from './endpoints';
+import { getPersonsChunk } from './endpoints';
 
 
 class TableExampleSortable extends React.Component {
@@ -11,10 +10,11 @@ class TableExampleSortable extends React.Component {
 
     componentDidMount = () => {
 
-        this.props.dispatch(getPersons());
+        this.props.dispatch(getPersonsChunk(0));
     }
 
     render() {
+        console.log('data', this.props.data)
         const column = this.props.column;
         const direction = this.props.direction;
         return (
@@ -24,7 +24,7 @@ class TableExampleSortable extends React.Component {
                         <Table.Row>
                             <Table.HeaderCell
                                 sorted={column === 'name' ? direction : null}
-                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'name', sorter: mysorter })}
+                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'name'})}
                             >
                                 Namex
                             </Table.HeaderCell>
@@ -40,7 +40,9 @@ class TableExampleSortable extends React.Component {
                             >
                                 Gender
                             </Table.HeaderCell>
-                            <Table.HeaderCell>extra</Table.HeaderCell>
+                            <Table.HeaderCell sorted={column === 'index' ? direction : null}
+                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'index' })}
+                                >index</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
@@ -73,12 +75,12 @@ class TableExampleSortable extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {this.props.data.map(({ age, gender, name }) => (
+                        {this.props.data.map(({ age, gender, name, index }) => (
                             <Table.Row key={name}>
                                 <Table.Cell>{name}</Table.Cell>
                                 <Table.Cell>{age}</Table.Cell>
                                 <Table.Cell>{gender}</Table.Cell>
-                                <Table.Cell>{name}</Table.Cell>
+                                <Table.Cell>{index}</Table.Cell>
                                 <Table.Cell>{age}</Table.Cell>
                                 <Table.Cell>{gender}</Table.Cell>
                                 <Table.Cell>{name}</Table.Cell>
@@ -114,6 +116,8 @@ class TableExampleSortable extends React.Component {
                 </Table>
             </div>
         )
+
+        // this.props.dispatch()
     }
 }
 

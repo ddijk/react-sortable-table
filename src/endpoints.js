@@ -4,6 +4,14 @@ export const getPersons = () => {
     return async("GET_DATA", {}, url, undefined, undefined, undefined, "GET", {'method':'GET'})
 }
 
+export const getPersonsChunk = (index) => {
+    const url = `http://localhost:9000/get_chunk?n=5&i=${index}`
+    return async("GET_DATA", {}, url, undefined, undefined, undefined, "GET", {'method':'GET'})
+}
+
+
+
+
 function async(type, startArgs, url, requestBody, args, onSuccess, method, config) {
 
     return function (dispatch) {
