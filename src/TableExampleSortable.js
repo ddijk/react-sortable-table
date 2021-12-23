@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import React from 'react'
 import { Table } from 'semantic-ui-react'
+import mysorter from './utils'
 
 const tableData = [
-  { name: 'John', age: 15, gender: 'Male' },
-  { name: 'Amber', age: 40, gender: 'Female' },
+  { name: 'John', age: 150, gender: 'Male' },
+  { name: 'Amber', age: 400, gender: 'Female' },
   { name: 'Leslie', age: 25, gender: 'Other' },
   { name: 'Ben', age: 70, gender: 'Male' },
 ]
@@ -13,12 +14,30 @@ function exampleReducer(state, action) {
   switch (action.type) {
     case 'CHANGE_SORT':
       if (state.column === action.column) {
-        return {
-          ...state,
-          data: state.data.slice().reverse(),
-          direction:
-            state.direction === 'ascending' ? 'descending' : 'ascending',
-        }
+          if ( action.sorter) {
+              console.log('using custom sorter', state);
+              let sorted = state.data.slice().sort(action.sorter)
+               if ( state.direction === 'descending'  ) {
+
+                  sorted = sorted.reverse()
+               }
+            return {
+                ...state,
+                data: sorted,
+                direction:
+                  state.direction === 'ascending' ? 'descending' : 'ascending',
+              }
+
+          } else {
+              console.log('using std sorter');
+            return {
+                ...state,
+                data: state.data.slice().reverse(),
+                direction:
+                  state.direction === 'ascending' ? 'descending' : 'ascending',
+              }
+          }
+       
       }
 
       return {
@@ -45,7 +64,7 @@ function TableExampleSortable() {
         <Table.Row>
           <Table.HeaderCell
             sorted={column === 'name' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name', sorter : mysorter })}
           >
             Name
           </Table.HeaderCell>
