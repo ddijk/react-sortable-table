@@ -13,8 +13,15 @@ class TableExampleSortable extends React.Component {
         this.props.dispatch(getPersonsChunk(0));
     }
 
+    componentDidUpdate() {
+
+        if (this.props.chunk_index < Math.round(this.props.total_size / this.props.chunk_size)) {
+            const nextChunk = this.props.chunk_index + 1;
+            this.props.dispatch(getPersonsChunk(nextChunk))
+        }
+    }
+
     render() {
-        console.log('data', this.props.data)
         const column = this.props.column;
         const direction = this.props.direction;
         return (
@@ -24,7 +31,7 @@ class TableExampleSortable extends React.Component {
                         <Table.Row>
                             <Table.HeaderCell
                                 sorted={column === 'name' ? direction : null}
-                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'name'})}
+                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'name' })}
                             >
                                 Namex
                             </Table.HeaderCell>
@@ -42,7 +49,7 @@ class TableExampleSortable extends React.Component {
                             </Table.HeaderCell>
                             <Table.HeaderCell sorted={column === 'index' ? direction : null}
                                 onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'index' })}
-                                >index</Table.HeaderCell>
+                            >index</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
@@ -117,7 +124,7 @@ class TableExampleSortable extends React.Component {
             </div>
         )
 
-        // this.props.dispatch()
+
     }
 }
 
@@ -125,11 +132,10 @@ class TableExampleSortable extends React.Component {
 const mapStateToProps = (state) => {
     console.log('state', state);
     return {
-        // filter: state.cases.filter,
-        // cases: state.overzichtBgk.content,
-        // column: state.overzichtBgk.column,
-        // direction: state.overzichtBgk.direction
-        data: state.sorter.tableData
+        data: state.sorter.tableData,
+        chunk_index: state.sorter.chunk_index,
+        chunk_size: state.sorter.chunk_size,
+        total_size: state.sorter.total_size
     }
 }
 export default connect(mapStateToProps)(TableExampleSortable)
