@@ -13,7 +13,8 @@ export const sorter = (state = { 'tableData': [] }, action) => {
                 'tableData': [...state.tableData,...action.value.content],
                 'chunk_size': action.value.chunk_size,
                 'chunk_index': action.value.chunk_index,
-                'total_size': action.value.total_size
+                'total_size': action.value.total_size,
+                'sorting' : false
             }
 
         case 'ERROR_GET_DATA':
@@ -25,6 +26,7 @@ export const sorter = (state = { 'tableData': [] }, action) => {
                     return {
                         ...state,
                         tableData: state.tableData.slice().reverse(),
+                        sorting: true,
                         direction:
                             state.direction === 'ascending' ? 'descending' : 'ascending',
                     }
@@ -34,7 +36,8 @@ export const sorter = (state = { 'tableData': [] }, action) => {
             return {
                 ...state,
                 column: action.column,
-                tableData: _.sortBy(state.tableData, [action.column]),
+                sorting: true,
+                tableData: _.sortBy(state.tableData.slice(), [action.column]),
                 direction: 'ascending',
             }
         default:
