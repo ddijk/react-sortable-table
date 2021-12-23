@@ -59,14 +59,15 @@ function TableExampleSortable() {
   const { column, data, direction } = state
 
   return (
-    <Table sortable celled fixed>
+      <div style={{overflowX: 'scroll'}}>
+    <Table sortable celled >
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell
             sorted={column === 'name' ? direction : null}
             onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name', sorter : mysorter })}
           >
-            Name
+            Namex
           </Table.HeaderCell>
           <Table.HeaderCell
             sorted={column === 'age' ? direction : null}
@@ -80,6 +81,36 @@ function TableExampleSortable() {
           >
             Gender
           </Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>extra</Table.HeaderCell>
+          <Table.HeaderCell>last</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -88,10 +119,41 @@ function TableExampleSortable() {
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{age}</Table.Cell>
             <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{age}</Table.Cell>
+            <Table.Cell>{gender}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
     </Table>
+    </div>
   )
 }
 
