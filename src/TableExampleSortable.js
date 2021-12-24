@@ -149,6 +149,8 @@ const mapStateToProps = (state) => {
         chunk_index: state.sorter.chunk_index,
         chunk_size: state.sorter.chunk_size,
         total_size: state.sorter.total_size,
+        column: state.sorter.column,
+        direction: state.sorter.direction,
         sorting: state.sorter.sorting // when 'true' -> user is busy sorting
     }
 }
