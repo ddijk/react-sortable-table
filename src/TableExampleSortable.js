@@ -27,8 +27,8 @@ class TableExampleSortable extends React.Component {
         return (
             <div style={{ overflowX: 'scroll' }}>
                 <div id={'progress'} style={{display: 'inline-block', marginTop: 8, marginLeft: 28}}>
-                            {this.props.data.length} (van totaal {this.props.total_size})
-                            <Progress style={{margin: 0}} size='tiny' color='blue' active={this.props.total_size!==this.props.data.length} total={this.props.total_size} value={this.props.data.length}/>
+                            { Math.round(100*((this.props.data.length || 0)/(this.props.total_size || 1))) } % 
+                            <Progress style={{margin: 0, width: 100}} size='tiny' color='blue' active={this.props.total_size!==this.props.data.length} total={this.props.total_size} value={this.props.data.length}/>
                         </div>
                 <Table sortable celled >
                     <Table.Header>
