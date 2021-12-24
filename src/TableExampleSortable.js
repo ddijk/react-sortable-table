@@ -15,7 +15,7 @@ class TableExampleSortable extends React.Component {
 
     componentDidUpdate() {
 
-        if (this.props.chunk_index < Math.round(this.props.total_size / this.props.chunk_size)) {
+        if (!this.props.sorting && this.props.chunk_index < Math.round(this.props.total_size / this.props.chunk_size)) {
             const nextChunk = this.props.chunk_index + 1;
             this.props.dispatch(getPersonsChunk(nextChunk))
         }
@@ -135,7 +135,8 @@ const mapStateToProps = (state) => {
         data: state.sorter.tableData,
         chunk_index: state.sorter.chunk_index,
         chunk_size: state.sorter.chunk_size,
-        total_size: state.sorter.total_size
+        total_size: state.sorter.total_size,
+        sorting: state.sorter.sorting // when 'true' -> user is busy sorting
     }
 }
 export default connect(mapStateToProps)(TableExampleSortable)
