@@ -30,7 +30,7 @@ class TableExampleSortable extends React.Component {
                             { Math.round(100*((this.props.data.length || 0)/(this.props.total_size || 1))) } % 
                             <Progress style={{margin: 0, width: 100}} size='tiny' color='blue' active={this.props.total_size!==this.props.data.length} total={this.props.total_size} value={this.props.data.length}/>
                         </div>
-                <Table sortable celled >
+                <Table padded sortable compact='very'  >
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell
