@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import { Table, Progress } from 'semantic-ui-react'
 import { connect } from "react-redux";
 import { getPersonsChunk } from './endpoints';
 
@@ -26,6 +26,10 @@ class TableExampleSortable extends React.Component {
         const direction = this.props.direction;
         return (
             <div style={{ overflowX: 'scroll' }}>
+                <div id={'progress'} style={{display: 'inline-block', marginTop: 8, marginLeft: 28}}>
+                            {this.props.data.length} (van totaal {this.props.total_size})
+                            <Progress style={{margin: 0}} size='tiny' color='blue' active={this.props.total_size!==this.props.data.length} total={this.props.total_size} value={this.props.data.length}/>
+                        </div>
                 <Table sortable celled >
                     <Table.Header>
                         <Table.Row>
