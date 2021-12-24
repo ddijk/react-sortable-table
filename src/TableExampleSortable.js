@@ -31,24 +31,24 @@ class TableExampleSortable extends React.Component {
                         <Table.Row>
                             <Table.HeaderCell
                                 sorted={column === 'name' ? direction : null}
-                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+                                onClick={() => this.sort('name')}
                             >
                                 Namex
                             </Table.HeaderCell>
                             <Table.HeaderCell
                                 sorted={column === 'age' ? direction : null}
-                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'age' })}
+                                onClick={() => this.sort('age')}
                             >
                                 Age
                             </Table.HeaderCell>
                             <Table.HeaderCell
                                 sorted={column === 'gender' ? direction : null}
-                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'gender' })}
+                                onClick={() => this.sort('gender')}
                             >
                                 Gender
                             </Table.HeaderCell>
                             <Table.HeaderCell sorted={column === 'index' ? direction : null}
-                                onClick={() => this.props.dispatch({ type: 'CHANGE_SORT', column: 'index' })}
+                                onClick={() => this.sort('index')}
                             >index</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
                             <Table.HeaderCell>extra</Table.HeaderCell>
@@ -125,6 +125,15 @@ class TableExampleSortable extends React.Component {
         )
 
 
+    }
+
+    sort(column) {
+        if (this.props.data.length < this.props.total_size) {
+            console.log('** Sorting not yet possible, not all data fetched');
+        } else {
+
+            this.props.dispatch({ type: 'CHANGE_SORT', column: column })
+        }
     }
 }
 
